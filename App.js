@@ -4,8 +4,13 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>BENJIVET</Text>
       <StatusBar style="auto" />
+
+      <Image
+        style={styles.logo}
+        source={require('./assets/Vets.png')}
+      />
     </View>
   );
 }
@@ -16,5 +21,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logo: {
+    width: 60,
+    height: 50,
   },
 });
