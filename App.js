@@ -1,29 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator  } from '@react-navigation/native-stack'
+
+import { HomeScreen } from './src/pages/Home'
+import { CalcScreen } from './src/pages/Calc'
+
+const Stack  = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>BENJIVET</Text>
-      <StatusBar style="auto" />
+    <NavigationContainer>
+      <Stack.Navigator 
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
 
-      <Image
-        style={styles.logo}
-        source={require('./assets/Vets.png')}
-      />
-    </View>
-  );
+      }}
+      >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Calc" component={CalcScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 60,
-    height: 50,
-  },
-});
