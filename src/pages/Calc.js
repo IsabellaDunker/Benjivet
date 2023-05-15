@@ -1,65 +1,82 @@
 import * as React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, Image, Button, TextInput,number, onChangeNumber, Pressable} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import Header from '../components/Header'
 
-export function CalcScreen() {
+export function CalcScreen({ navigation }) {
   return(
-    <SafeAreaView style={styles.containerMain}>
+    <View style={styles.containerMain}>
+    <Header/>
       <View style={styles.container}>
-          <Text style={styles.texto}>Insira os Valores desejados:</Text>
-          <Text style={styles.texto}>Grão moido (KG):</Text>
-          <TextInput 
-            style={styles.input}
-            onChangeText={onChangeNumber}
-            value={number}
+        <Text style={styles.textMain}>Insira os Valores desejados:</Text>
+        <Text style={styles.text}>Grão moido (KG):</Text>
+        <TextInput 
+          style={styles.input} 
+          onChangeText={() => {}}
           />
-          <Text style={styles.texto}>Teor de MS do milho (%):</Text>
-          <TextInput 
-            style={styles.input}
-            onChangeText={onChangeNumber}
-            value={number}
+        <Text style={styles.text}>Teor de MS do milho (%):</Text>
+        <TextInput 
+          style={styles.input} 
+          onChangeText={() => {}}
           />
-          <Text style={styles.texto}>Teor de umidade (%):</Text>
-          <TextInput 
-            style={styles.input}
-            onChangeText={onChangeNumber}
-            value={number}
+        <Text style={styles.text}>Teor de umidade (%):</Text>
+        <TextInput 
+          style={styles.input} 
+          onChangeText={() => {}}
           />
-      </View>
+
       <View style={styles.containerButton}>
-        <Pressable style={styles.button}>
-              <Text style={styles.textCalcular}>Calcular</Text>
-            </Pressable>
+        <TouchableOpacity style={styles.button}>
+            <Text style={styles.textCalcular}>Calcular</Text>
+        </TouchableOpacity>
       </View>
-    </SafeAreaView>
+      </View>
+      
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  containerMain:{
+  containerMain: {
     flex: 1,
     backgroundColor: '#e2e2e2',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   container:{
-    
+    backgroundColor: '#fff',
+    paddingStart: 25,
+    paddingEnd: 25,
+    justifyContent: 'center',
   },
   input:{
-    backgroundColor: '#565456',
+    borderBottomColor:'#ccc', 
+    borderBottomWidth: 2,
+    backgroundColor: '#fff',
     borderRadius: 8,
+    paddingBottom:15, 
+    marginBottom:25
   },
-  texto:{
-    paddingTop: 25,
+  text: {
+    fontSize: 16,
+  },
+  textMain: {
+    fontSize: 28, 
+    color: '#228866',
+    paddingTop: 20,
+    paddingBottom: 40,
+    alignSelf: 'center'
   },
   containerButton:{
     marginTop:50,
   },
   button:{
-    backgroundColor: `#f8f8ff`,
+    backgroundColor: '#1680E1',
+    padding: 15,
     borderRadius: 10,
+    marginBottom:30,
   },
   textCalcular:{
-    padding: 12,
-    alignItems: 'center',
+    fontSize: 16,
+    fontWeight: '700',
+    alignSelf: 'center',
+    color: '#fff'
   }
 })
