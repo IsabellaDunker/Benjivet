@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64;
 
-export default function Header({ page, navigation }){
+export default function Header({ navigation }){
   return(
     <View style={styles.container}>
       <View style={styles.content}>
