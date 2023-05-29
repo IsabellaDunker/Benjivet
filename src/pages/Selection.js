@@ -26,5 +26,12 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     alignSelf: 'center'
   },
+  textRes: {
+    fontSize: 28, 
+    color: '#228866',
+    paddingTop: 20,
+    paddingBottom: 30,
+    alignSelf: 'center'
+  },
 
 })

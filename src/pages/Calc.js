@@ -1,31 +1,78 @@
-import * as React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, TextInput, Button ,TouchableOpacity, Alert} from 'react-native';
 import Header from '../components/Header'
 
 export function CalcScreen({ navigation }) {
+  
+
+
+  const [valorGraoMoido,setValorGraoMoido]=useState('')
+  const [valorTeorMilho, setValorTeorMilho]=useState('')
+  const [valorTeorUmidade, setValorTeorUmidade]=useState('')
+  const [valorAguaTotal, setValorAguaTotal]=useState('')
+
+    const handleChangeGraoMoido = (novoValorGraoMoido) => {
+      setValorGraoMoido(parseFloat(novoValorGraoMoido));
+    };
+    const handleChangeTeorMilho = (novoValorTeorMilho) => {
+      setValorTeorMilho(parseFloat(novoValorTeorMilho));
+    };
+    const handleChangeTeorUmidade = (novoValorTeorUmidade) => {
+      setValorTeorUmidade(parseFloat(novoValorTeorUmidade));
+    };
+    const handleChangeAguaTotal = (novoValorAguaTotal) => {
+      setValorAguaTotal(parseFloat(novoValorAguaTotal));
+    };
+
+    const handleSubmitResultado = () => {
+
+      setValorGraoMoido('')
+      setValorTeorMilho('')
+      setValorTeorUmidade('')
+      setValorAguaTotal('')
+      Alert.alert('Resultado', (100-((valorGraoMoido*valorTeorMilho/100)*100/(((valorGraoMoido-(valorGraoMoido*valorTeorMilho/100))+(valorGraoMoido*valorTeorMilho/100)+valorAguaTotal)))).toString() )
+
+    }
+
+
+
   return(
     <View style={styles.containerMain}>
+
     <Header/>
       <View style={styles.container}>
         <Text style={styles.textMain}>Insira os Valores desejados:</Text>
         <Text style={styles.text}>Grão moido (KG):</Text>
-        <TextInput 
+        <TextInput
+          value={valorGraoMoido.toString()}
           style={styles.input} 
-          onChangeText={() => {}}
+          onChangeText={handleChangeGraoMoido}
+          keyboardType="numeric"
           />
         <Text style={styles.text}>Teor de MS do milho (%):</Text>
         <TextInput 
-          style={styles.input} 
-          onChangeText={() => {}}
+          value={valorTeorMilho.toString()}
+          style={styles.input}  
+          onChangeText={handleChangeTeorMilho}
+          keyboardType="numeric"
           />
         <Text style={styles.text}>Teor de umidade (%):</Text>
         <TextInput 
+          value={valorTeorUmidade.toString()}
           style={styles.input} 
-          onChangeText={() => {}}
+          onChangeText={handleChangeTeorUmidade}
+          keyboardType="numeric"
+          />
+        <Text style={styles.text}>Água Total(l):</Text>
+        <TextInput 
+          value={valorAguaTotal.toString()}
+          style={styles.input} 
+          onChangeText={handleChangeAguaTotal}
+          keyboardType="numeric"
           />
 
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={handleSubmitResultado} style={styles.button}>
             <Text style={styles.textCalcular}>Calcular</Text>
         </TouchableOpacity>
       </View>
