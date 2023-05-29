@@ -17,7 +17,7 @@ export function HomeScreen({ navigation }) {
         </View>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate('Calc')}>
+          onPress={() => navigation.navigate('Selection')}>
           <Text style={styles.buttonText}>Entrar</Text>
         </Pressable>
       </View>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   circle: {
-    backgroundColor: 'lightblue',
+    backgroundColor: '#B8EAF5',
     height: 300,
     width: 300,
     borderRadius: 300/2,
