@@ -1,16 +1,19 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import racao from '../../assets/racao.png';
 
-export default function Selector({navigation}){
+export default function Selector({ screen }){
+  const navigation = useNavigation();
+
   return(
     <View style = {styles.container}>
       <View style = {styles.content}>
         <View style = {styles.item}>
         <TouchableOpacity
           style={styles.button1}
-          onPress={() => navigation.navigate('Calc')}>
+          onPress={() => navigation.navigate(screen)}>
             <Image
               source={racao}
               style={styles.image}

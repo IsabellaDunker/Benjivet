@@ -1,6 +1,8 @@
-import * as React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, ScrollView, TextInput, Button ,TouchableOpacity, Alert} from 'react-native';
 import Header from '../components/Header'
+
+export function CalcScreen() {
 
   const [valorGraoMoido,setValorGraoMoido]=useState('')
   const [valorTeorMilho, setValorTeorMilho]=useState('')
@@ -8,69 +10,73 @@ import Header from '../components/Header'
   const [valorAguaTotal, setValorAguaTotal]=useState('')
 
     const handleChangeGraoMoido = (novoValorGraoMoido) => {
-      setValorGraoMoido(parseFloat(novoValorGraoMoido));
+      setValorGraoMoido(novoValorGraoMoido);
     };
     const handleChangeTeorMilho = (novoValorTeorMilho) => {
-      setValorTeorMilho(parseFloat(novoValorTeorMilho));
+      setValorTeorMilho(novoValorTeorMilho);
     };
     const handleChangeTeorUmidade = (novoValorTeorUmidade) => {
-      setValorTeorUmidade(parseFloat(novoValorTeorUmidade));
+      setValorTeorUmidade(novoValorTeorUmidade);
     };
     const handleChangeAguaTotal = (novoValorAguaTotal) => {
-      setValorAguaTotal(parseFloat(novoValorAguaTotal));
+      setValorAguaTotal(novoValorAguaTotal);
     };
 
     const handleSubmitResultado = () => {
+      Alert.alert('Resultado', (100-((valorGraoMoido*valorTeorMilho/100)*100/(((valorGraoMoido-(valorGraoMoido*valorTeorMilho/100))+(valorGraoMoido*valorTeorMilho/100)+valorAguaTotal)))).toFixed(2).toString() )
 
       setValorGraoMoido('')
       setValorTeorMilho('')
       setValorTeorUmidade('')
       setValorAguaTotal('')
-      Alert.alert('Resultado', (100-((valorGraoMoido*valorTeorMilho/100)*100/(((valorGraoMoido-(valorGraoMoido*valorTeorMilho/100))+(valorGraoMoido*valorTeorMilho/100)+valorAguaTotal)))).toString() )
-
     }
 
-export function CalcScreen({ navigation }) {
+
+
   return(
-    <View style={styles.container}>
-      <View>
+    <ScrollView style={styles.containerMain}>
+
+    <Header screen='Selection'/>
+      <View style={styles.container}>
         <Text style={styles.textMain}>Insira os Valores desejados:</Text>
         <Text style={styles.text}>Grão moido (KG):</Text>
-        <TextInput 
+        <TextInput
           value={valorGraoMoido.toString()}
-          style={{flex:1}} 
+          style={styles.input} 
           onChangeText={handleChangeGraoMoido}
           keyboardType="numeric"
           />
         <Text style={styles.text}>Teor de MS do milho (%):</Text>
         <TextInput 
           value={valorTeorMilho.toString()}
-          style={{flex:1}} 
+          style={styles.input}  
           onChangeText={handleChangeTeorMilho}
           keyboardType="numeric"
           />
         <Text style={styles.text}>Teor de umidade (%):</Text>
         <TextInput 
           value={valorTeorUmidade.toString()}
-          style={{flex:1}} 
+          style={styles.input} 
           onChangeText={handleChangeTeorUmidade}
           keyboardType="numeric"
-        />
+          />
         <Text style={styles.text}>Água Total(l):</Text>
         <TextInput 
           value={valorAguaTotal.toString()}
-          style={{flex:1}} 
+          style={styles.input} 
           onChangeText={handleChangeAguaTotal}
           keyboardType="numeric"
           />
-      </View>
+
       <View style={styles.containerButton}>
         <TouchableOpacity onPress={handleSubmitResultado} style={styles.button}>
             <Text style={styles.textCalcular}>Calcular</Text>
         </TouchableOpacity>
       </View>
-    </View>
-  );
+      </View>
+      
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -80,6 +86,7 @@ const styles = StyleSheet.create({
   },
   container:{
     backgroundColor: '#fff',
+    paddingTop: 30,
     paddingStart: 25,
     paddingEnd: 25,
     justifyContent: 'center',
@@ -99,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 28, 
     color: '#228866',
     paddingTop: 20,
-    paddingBottom: 30,
+    paddingBottom: 40,
     alignSelf: 'center'
   },
   containerButton:{
@@ -107,12 +114,14 @@ const styles = StyleSheet.create({
   },
   button:{
     backgroundColor: '#1680E1',
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
     marginBottom:30,
   },
   textCalcular:{
-    padding: 12,
-    alignItems: 'center',
+    fontSize: 16,
+    fontWeight: '700',
+    alignSelf: 'center',
+    color: '#fff'
   }
 })
