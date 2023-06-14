@@ -2,37 +2,22 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput ,TouchableOpacity, Alert} from 'react-native';
 import Header from '../components/Header'
 
-export function CalcScreen2() {
+export function CalcScreen4() {
 
-  const [valorGorduraSeca, setValorGorduraSeca]=useState('')
-  const [valorLeite, setValorLeite]=useState('')
-  const [valorGorduraLeite, setValorGorduraLeite]=useState('')
   const [valorPeso, setValorPeso]=useState('')
 
-    const handleChangeGorduraSeca = (novoValorGorduraSeca) => {
-      setValorGorduraSeca(novoValorGorduraSeca);
-    };
-    const handleChangeLeite = (novoValorLeite) => {
-      setValorLeite(novoValorLeite);
-    };
-    const handleChangeGorduraLeite = (novoValorGorduraLeite) => {
-      setValorGorduraLeite(novoValorGorduraLeite);
-    };
     const handleChangePeso = (novoValorPeso) => {
       setValorPeso(novoValorPeso);
     };
 
     const handleSubmitResultado = () => {
-      const LGC = ((valorGorduraSeca * valorLeite + 15) * (valorGorduraLeite)).toFixed(2)
-      const materiaSecaporLitro = ((valorGorduraSeca/LGC) * (valorGorduraSeca * 10)).toFixed(2)
-      const materiaSeca = ((materiaSecaporLitro * valorPeso)/10).toFixed(2)
+      const MS = (valorPeso * 0.03).toFixed(2)
+      const kgAlimento = ((MS * 0.3) / 0.15).toFixed(2)
 
       Alert.alert(
-        `A ingestão ideal da vaca é: ${materiaSeca} KG por dia`)
+        `A ingestão ideal da vaca é: ${MS} Kg de matéria seca por dia, 
+        estando presente em aproximadamente ${kgAlimento}Kg de capim`)
 
-      setValorGorduraSeca('')
-      setValorLeite('')
-      setValorGorduraLeite('')
       setValorPeso('')
     }
 
@@ -42,27 +27,6 @@ export function CalcScreen2() {
     <Header screen='Selection'/>
       <View style={styles.container}>
         <Text style={styles.textMain}>Insira os Valores desejados:</Text>
-        <Text style={styles.text}>Gordura da matéria seca (%):</Text>
-        <TextInput
-          value={valorGorduraSeca.toString()}
-          style={styles.input} 
-          onChangeText={handleChangeGorduraSeca}
-          keyboardType="numeric"
-          />
-        <Text style={styles.text}>Valor de leite por dia (L):</Text>
-        <TextInput 
-          value={valorLeite.toString()}
-          style={styles.input}  
-          onChangeText={handleChangeLeite}
-          keyboardType="numeric"
-          />
-        <Text style={styles.text}>Valor da gordura do leite (%):</Text>
-        <TextInput 
-          value={valorGorduraLeite.toString()}
-          style={styles.input} 
-          onChangeText={handleChangeGorduraLeite}
-          keyboardType="numeric"
-          />
         <Text style={styles.text}>Peso do animal (Kg):</Text>
         <TextInput 
           value={valorPeso.toString()}

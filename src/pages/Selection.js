@@ -4,7 +4,7 @@ import Selector from '../components/Selector'
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64;
 
-export function SelectionScreen({ navigation }) {
+export function SelectionScreen() {
   return(
     <View style={styles.container}>
       <View style={styles.header}>

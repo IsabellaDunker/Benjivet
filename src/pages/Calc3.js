@@ -2,40 +2,35 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput ,TouchableOpacity, Alert} from 'react-native';
 import Header from '../components/Header'
 
-export function CalcScreen() {
+export function CalcScreen3() {
 
-  const [valorGraoMoido,setValorGraoMoido]=useState('')
-  const [valorTeorMilho, setValorTeorMilho]=useState('')
-  const [valorTeorUmidade, setValorTeorUmidade]=useState('')
-  const [valorAguaTotal, setValorAguaTotal]=useState('')
+  const [valorSilagem, setValorSilagem]=useState('')
+  const [valorFibra, setValorFibra]=useState('')
+  const [valorMS, setValorMS]=useState('')
 
-    const handleChangeGraoMoido = (novoValorGraoMoido) => {
-      setValorGraoMoido(novoValorGraoMoido);
+    const handleChangeSilagem = (novoValorSilagem) => {
+      setValorSilagem(novoValorSilagem);
     };
-    const handleChangeTeorMilho = (novoValorTeorMilho) => {
-      setValorTeorMilho(novoValorTeorMilho);
+    const handleChangeFibra = (novoValorFibra) => {
+      setValorFibra(novoValorFibra);
     };
-    const handleChangeTeorUmidade = (novoValorTeorUmidade) => {
-      setValorTeorUmidade(novoValorTeorUmidade);
-    };
-    const handleChangeAguaTotal = (novoValorAguaTotal) => {
-      setValorAguaTotal(novoValorAguaTotal);
+    const handleChangeMS = (novoValorMS) => {
+      setValorMS(novoValorMS);
     };
 
     const handleSubmitResultado = () => {
-      const litrosAgua = (100-((valorGraoMoido*valorTeorMilho/100)*100/(((valorGraoMoido-(valorGraoMoido*valorTeorMilho/100))+(valorGraoMoido*valorTeorMilho/100)+valorAguaTotal)))).toFixed(2)
-      const kgMilho = (valorGraoMoido/valorAguaTotal).toFixed(2)
+      const dietaTotal = ((valorSilagem * 0.17)/valorFibra).toFixed(2)
+      const dietaMS = ((valorMS * dietaTotal)/100).toFixed(2) 
+      const dietaSilagem = (dietaTotal - dietaMS).toFixed(2)
 
       Alert.alert(
-        `A quantidade de água por milho ideal: ${litrosAgua}L/${kgMilho}Kg`)
+        `A ingestão ideal da vaca é: ${dietaTotal}Kg, 
+        sendo ${dietaMS}Kg de MS e ${dietaSilagem}Kg de MS concentrado`)
 
-      setValorGraoMoido('')
-      setValorTeorMilho('')
-      setValorTeorUmidade('')
-      setValorAguaTotal('')
+      setValorSilagem('')
+      setValorFibra('')
+      setValorMS('')
     }
-
-
 
   return(
     <ScrollView style={styles.containerMain}>
@@ -43,32 +38,32 @@ export function CalcScreen() {
     <Header screen='Selection'/>
       <View style={styles.container}>
         <Text style={styles.textMain}>Insira os Valores desejados:</Text>
-        <Text style={styles.text}>Grão moido (KG):</Text>
+        <Text style={styles.text}>Gordura da matéria seca (%):</Text>
         <TextInput
-          value={valorGraoMoido.toString()}
+          value={valorSilagem.toString()}
           style={styles.input} 
-          onChangeText={handleChangeGraoMoido}
+          onChangeText={handleChangeSilagem}
           keyboardType="numeric"
           />
-        <Text style={styles.text}>Teor de MS do milho (%):</Text>
+        <Text style={styles.text}>Valor de Fibra por dia (L):</Text>
         <TextInput 
-          value={valorTeorMilho.toString()}
+          value={valorFibra.toString()}
           style={styles.input}  
-          onChangeText={handleChangeTeorMilho}
+          onChangeText={handleChangeFibra}
           keyboardType="numeric"
           />
-        <Text style={styles.text}>Teor de umidade (%):</Text>
+        <Text style={styles.text}>Valor da gordura do Fibra (%):</Text>
         <TextInput 
-          value={valorTeorUmidade.toString()}
+          value={valorMS.toString()}
           style={styles.input} 
-          onChangeText={handleChangeTeorUmidade}
+          onChangeText={handleChangeMS}
           keyboardType="numeric"
           />
-        <Text style={styles.text}>Água Total(l):</Text>
+        <Text style={styles.text}>Peso do animal (Kg):</Text>
         <TextInput 
-          value={valorAguaTotal.toString()}
+          value={valorPeso.toString()}
           style={styles.input} 
-          onChangeText={handleChangeAguaTotal}
+          onChangeText={handleChangePeso}
           keyboardType="numeric"
           />
 

@@ -19,19 +19,19 @@ export default function Selector({ screen }){
               style={styles.image}
             />
         </TouchableOpacity>
-        <Text style={styles.buttonText}>Ração</Text>
+        <Text style={styles.buttonText}>Cálculo de água por milho na ração</Text>
         </View>
       
         <View style = {styles.item}>
           <TouchableOpacity
             style={styles.button2}
-            onPress={() => navigation.navigate('Calc')}>
+            onPress={() => navigation.navigate('Calc2')}>
               <Image
                 source={racao}
                 style={styles.image}
               />
           </TouchableOpacity>
-          <Text style={styles.buttonText}>Ração</Text>
+          <Text style={styles.buttonText}>Dieta da vaca por litros de leite</Text>
         </View>
       </View>
 
@@ -39,25 +39,25 @@ export default function Selector({ screen }){
         <View style = {styles.item}>
         <TouchableOpacity
           style={styles.button3}
-          onPress={() => navigation.navigate('Calc')}>
+          onPress={() => navigation.navigate('Calc3')}>
             <Image
               source={racao}
               style={styles.image}
             />
         </TouchableOpacity>
-        <Text style={styles.buttonText}>Ração</Text>
+        <Text style={styles.buttonText}>Exigências nutricionais da vaca</Text>
         </View>
       
         <View style = {styles.item}>
           <TouchableOpacity
             style={styles.button4}
-            onPress={() => navigation.navigate('Calc')}>
+            onPress={() => navigation.navigate('Calc4')}>
               <Image
                 source={racao}
                 style={styles.image}
               />
           </TouchableOpacity>
-          <Text style={styles.buttonText}>Ração</Text>
+          <Text style={styles.buttonText}>Dieta da vaca por peso</Text>
         </View>
       </View>
     
@@ -126,7 +126,10 @@ const styles = StyleSheet.create({
     fontSize: 20, 
     color: '#000000',
     paddingTop: 20,
-    paddingHorizontal: 45,
+    width: 130,
   },
+  item: {
+    alignItems: 'center'
+  }
 
 })
